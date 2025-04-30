@@ -1,0 +1,85 @@
+! ===============================
+! Router1 Configuration
+! ===============================
+enable
+configure terminal
+hostname R1
+interface GigabitEthernet0/0
+ ip address 192.168.1.1 255.255.255.0
+ no shutdown
+exit
+interface Loopback0
+ ip address 1.1.1.1 255.255.255.0
+exit
+router ospf 1
+ network 192.168.1.0 0.0.0.255 area 0
+ network 1.1.1.0 0.0.0.255 area 0
+exit
+copy running-config startup-config
+
+! ===============================
+! Router2 Configuration
+! ===============================
+enable
+configure terminal
+hostname R2
+interface GigabitEthernet0/0
+ ip address 192.168.1.2 255.255.255.0
+ no shutdown
+exit
+interface GigabitEthernet0/1
+ ip address 192.168.2.1 255.255.255.0
+ no shutdown
+exit
+interface Loopback0
+ ip address 2.2.2.2 255.255.255.0
+exit
+router ospf 1
+ network 192.168.1.0 0.0.0.255 area 0
+ network 192.168.2.0 0.0.0.255 area 0
+ network 2.2.2.0 0.0.0.255 area 0
+exit
+copy running-config startup-config
+
+! ===============================
+! Router3 Configuration
+! ===============================
+enable
+configure terminal
+hostname R3
+interface GigabitEthernet0/0
+ ip address 192.168.2.2 255.255.255.0
+ no shutdown
+exit
+interface GigabitEthernet0/1
+ ip address 192.168.3.1 255.255.255.0
+ no shutdown
+exit
+interface Loopback0
+ ip address 3.3.3.3 255.255.255.0
+exit
+router ospf 1
+ network 192.168.2.0 0.0.0.255 area 0
+ network 192.168.3.0 0.0.0.255 area 0
+ network 3.3.3.0 0.0.0.255 area 0
+exit
+copy running-config startup-config
+
+! ===============================
+! Router4 Configuration
+! ===============================
+enable
+configure terminal
+hostname R4
+interface GigabitEthernet0/0
+ ip address 192.168.3.2 255.255.255.0
+ no shutdown
+exit
+interface Loopback0
+ ip address 4.4.4.4 255.255.255.0
+exit
+router ospf 1
+ network 192.168.3.0 0.0.0.255 area 0
+ network 4.4.4.0 0.0.0.255 area 0
+exit
+copy running-config startup-config
